@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .task-list {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .pending {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📋 Lista de Tareas</h1>
+
+    <div class="task-list">
+        {% if tareas %}
+            {% for tarea in tareas %}
+                <div class="task">
+                    <span>{{ tarea.nombre }}</span>
+
+                    {% if tarea.completa %}
+                        <span class="completed">✔ Completada</span>
+                    {% else %}
+                        <span class="pending">✘ Pendiente</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay tareas registradas.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
